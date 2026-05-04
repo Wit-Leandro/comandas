@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css" />
+  <title>COMANDAS LOJA</title>
+</head>
+
+<body>
+
+  <div class="resumo">
+    <p>💰 Total do dia: R$ <span id="totalDia">0.00</span>
+    <p>🧾 Em aberto: R$ <span id="totalAberto">0.00</span></p>
+    <p>👥 Clientes atendidos: <span id="qtdClientes">0</span></p>
+    <p>🏆 Maior venda: R$ <span id="maiorVenda">0.00</span></p>
+    <p>🛵 Delivery: R$ <span id="totalDelivery">0.00</span></p>
+    <p>👥 Fiados 🧾: R$ <span id="totalFiados">0.00</span></p>
+  </div>
+
+  <div class="acoes">
+
+    <button id="btnNovoCliente" class="novoCliente" onclick="criarCliente()">
+      + Novo Cliente
+    </button>
+
+    <button id="btnToggle" class="toggleBtn" onclick="toggleHistorico()">
+      Histórico
+    </button>
+
+    <button id="btnfecharCaixa" class="fecharCaixa" onclick="fecharCaixa()">
+      Fechar Caixa
+    </button>
+
+    <button id="btnDelivery" class="deliveryBtn" onclick="toggleDelivery()">
+      + Delivery
+    </button>
+
+    <button id="btnFiado" class="toggleBtn" onclick="toggleFiado()">+ Fiados
+    </button>
+
+  </div>
+
+  <div id="areaClientes">
+
+    <!-- DELIVERY -->
+
+    <div id="painelDelivery" class="mesa hidden">
+
+      <h2>🛵 Delivery</h2>
+
+      <input type="number" id="valorDelivery" placeholder="Valor delivery" onkeydown="enterDelivery(event)">
+
+      <button class="deliveryBtn" onclick="adicionarDelivery()">
+        Adicionar
+      </button>
+
+      <div id="listaDelivery"></div>
+
+      <div class="totalMesa">
+        Total Delivery:
+        R$ <span id="totalDeliveryTela">0.00</span>
+      </div>
+
+      <button class="pagar" onclick="finalizarDelivery()">
+        Finalizar Delivery
+      </button>
+
+    </div>
+
+    <!-- FIADOS -->
+    <div id="painelFiado" class="mesa hidden">
+      <h2>* FIADOS *</h2>
+      <input type="text" id="nomeFiado" placeholder="Nome Cliente">
+      <input type="number" id="valorFiado" placeholder="Valor" onkeydown="enterFiado(event)">
+      <button class="add" onclick="adicionarFiado()">Adicionar Fiado</button>
+      <div id="listaFiados"></div>
+
+    </div>
+
+    <!-- CLIENTES -->
+
+    <div class="mesas" id="clientes"></div>
+
+  </div>
+
+  <!-- HISTORICO -->
+
+  <div id="areaHistorico" class="hidden">
+
+    <h2>Histórico do Dia</h2>
+
+    <div id="historico"></div>
+
+  </div>
+  <script src="script.js"></script>
+
+
+</body>
+
+</html>
