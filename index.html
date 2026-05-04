@@ -11,34 +11,28 @@
 <body>
 
   <div class="resumo">
-    <p>💰 Total do dia: R$ <span id="totalDia">0.00</span>
+    <p>💰 Total do dia: R$ <span id="totalDia">0.00</span></p>
     <p>🧾 Em aberto: R$ <span id="totalAberto">0.00</span></p>
     <p>👥 Clientes atendidos: <span id="qtdClientes">0</span></p>
     <p>🏆 Maior venda: R$ <span id="maiorVenda">0.00</span></p>
     <p>🛵 Delivery: R$ <span id="totalDelivery">0.00</span></p>
     <p>👥 Fiados 🧾: R$ <span id="totalFiados">0.00</span></p>
+    
   </div>
 
   <div class="acoes">
 
-    <button id="btnNovoCliente" class="novoCliente" onclick="criarCliente()">
-      + Novo Cliente
-    </button>
+    <button id="btnNovoCliente" class="novoCliente" onclick="criarCliente()">+ Novo Cliente</button>
 
-    <button id="btnToggle" class="toggleBtn" onclick="toggleHistorico()">
-      Histórico
-    </button>
+    <button id="btnToggle" class="toggleBtn" onclick="toggleHistorico()">Histórico</button>
 
-    <button id="btnfecharCaixa" class="fecharCaixa" onclick="fecharCaixa()">
-      Fechar Caixa
-    </button>
+    <button id="btnDelivery" class="deliveryBtn" onclick="toggleDelivery()">+ Delivery</button>
 
-    <button id="btnDelivery" class="deliveryBtn" onclick="toggleDelivery()">
-      + Delivery
-    </button>
+    <button id="btnFiado" class="toggleBtn" onclick="toggleFiado()">+ Fiados</button>
 
-    <button id="btnFiado" class="toggleBtn" onclick="toggleFiado()">+ Fiados
-    </button>
+    <button id="btnfecharCaixa" class="fecharCaixa" onclick="fecharCaixa()">Fechar Caixa</button>
+
+    <button id="btnOlho" onclick="toggleValores()"> 👁️ </button>
 
   </div>
 

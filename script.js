@@ -16,7 +16,10 @@ let totalDelivery = 0;
 
 let fiados = [];
 
-/* ================= STORAGE ================= */
+let ocultarValores = false;
+
+
+/* ================= SALVAR E CARREGAR DADOS ================= */
 
 function salvarDados(){
 
@@ -106,13 +109,13 @@ function atualizarResumo(){
 
   let maior = 0;
 
-  historico.forEach(h=>{
+  [...historico].reverse().forEach(h=>{
     if(h.total > maior){
       maior = h.total;
     }
   });
 
-  historicoDelivery.forEach(h=>{
+  [...historicoDelivery].reverse().forEach(h=>{
     if(h.total > maior){
       maior = h.total;
     }
@@ -120,17 +123,24 @@ function atualizarResumo(){
 
   // TOTAL DIA
   document.getElementById("totalDia")
-    .innerText = (
-      totalDia + totalDelivery
-    ).toFixed(2);
+  .innerText =
+  ocultarValores
+    ? "••••"
+    : (totalDia + totalDelivery).toFixed(2);
 
   // DELIVERY
   document.getElementById("totalDelivery")
-    .innerText = totalDelivery.toFixed(2);
+  .innerText =
+  ocultarValores
+    ? "••••"
+    : totalDelivery.toFixed(2);
 
   // EM ABERTO
   document.getElementById("totalAberto")
-    .innerText = (aberto + totalFiados).toFixed(2);
+  .innerText =
+  ocultarValores
+    ? "••••"
+    : (aberto + totalFiados).toFixed(2);
 
   // CLIENTES
   document.getElementById("qtdClientes")
@@ -140,7 +150,10 @@ function atualizarResumo(){
 
   // MAIOR VENDA
   document.getElementById("maiorVenda")
-    .innerText = maior.toFixed(2);
+  .innerText =
+  ocultarValores
+    ? "••••"
+    : maior.toFixed(2);
   
     // FIADOS
 
@@ -150,11 +163,11 @@ function atualizarResumo(){
   if(fiadoTela){
 
     fiadoTela.innerText =
-      totalFiados.toFixed(2);
+  ocultarValores
+    ? "••••"
+    : totalFiados.toFixed(2);
   }  
 }
-
-
 
 /* ================= CLIENTES ================= */
 
@@ -500,7 +513,7 @@ function renderHistorico(){
 
   container.innerHTML = "";
 
-  historico.forEach(h=>{
+  [...historico].reverse().forEach(h=>{
 
     const nome = h.nome || "-";
 
@@ -537,7 +550,7 @@ function renderHistorico(){
     `;
   });
 
-  historicoDelivery.forEach(h=>{
+  [...historicoDelivery].reverse().forEach(h=>{
 
     const itens = (h.itens || [])
       .map(v=>`R$ ${v.toFixed(2)}`)
@@ -648,13 +661,13 @@ function fecharCaixa(){
 
   let maior = 0;
 
-  historico.forEach(h=>{
+  [...historico].reverse().forEach(h=>{
     if(h.total > maior){
       maior = h.total;
     }
   });
 
-  historicoDelivery.forEach(h=>{
+  [...historicoDelivery].reverse().forEach(h=>{
     if(h.total > maior){
       maior = h.total;
     }
@@ -744,11 +757,19 @@ function fecharCaixa(){
 
 function toggleDelivery(){
 
-  const painelDelivery =
-    document.getElementById("painelDelivery");
+  const btnDelivery = document.getElementById("btnDelivery")
+
+  const painelDelivery = document.getElementById("painelDelivery");
 
   painelDelivery.classList.toggle("hidden");
-  
+
+  if(!painelDelivery.classList.contains("hidden")){
+    btnDelivery.innerText = "Ocutar Delivery";
+
+  } else{
+    btnDelivery.innerText = "+ Delivery";
+
+  }  
 }
 
 function enterCliente(event, index){
@@ -930,8 +951,18 @@ alert("Fiado quitado");
 }
 
 function toggleFiado(){
-  const painel = document.getElementById("painelFiado");
-  painel.classList.toggle("hidden")
+  const painelFiado = document.getElementById("painelFiado");
+  painelFiado.classList.toggle("hidden")
+
+  const btnFiado = document.getElementById("btnFiado")
+
+  if(!painelFiado.classList.contains("hidden")){
+    btnFiado.innerText = "Ocutar Fiado";
+
+  } else{
+    btnFiado.innerText = "+ Fiado";
+
+  }  
 }
 
 function enterFiado(event){
@@ -949,6 +980,18 @@ function enterFinalizar(event, index){
 	}
 }
 
+function toggleValores(){
+
+  ocultarValores = !ocultarValores;
+
+  const btn =
+    document.getElementById("btnOlho");
+
+  btn.innerText =
+    ocultarValores ? "🙈" : "👁️";
+
+  atualizarResumo();
+}
 
 
 carregarDados();
