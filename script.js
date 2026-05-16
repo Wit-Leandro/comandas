@@ -258,7 +258,7 @@ function renderClientes(){
         onkeydown="enterFinalizar(event, ${index})"
       >
 
-      <div id="troco${index}"></div>
+      <div id="troco${index}" class="trocoBox"></div>
 
       <button class="pagar"
         onclick="finalizar(${index})">
@@ -992,6 +992,61 @@ function toggleValores(){
 
   atualizarResumo();
 }
+
+document.addEventListener(
+
+  "keydown",
+
+  function(event){
+
+    // F2 = Novo Cliente
+
+    if(event.key === "F2"){
+
+      event.preventDefault();
+
+      criarCliente();
+    }
+
+    // F3 = Histórico
+
+    if(event.key === "F3"){
+
+      event.preventDefault();
+
+      toggleHistorico();
+    }
+
+    // F4 = Delivery
+
+    if(event.key === "F4"){
+
+      event.preventDefault();
+
+      toggleDelivery();
+    }
+
+    // F6 = Fiados
+
+    if(event.key === "F6"){
+
+      event.preventDefault();
+
+      toggleFiados();
+    }
+
+    // F7 = Fechar Caixa
+
+    if(event.key === "F7"){
+
+      event.preventDefault();
+
+      fecharCaixa();
+    }
+
+  }
+
+);
 
 
 carregarDados();
